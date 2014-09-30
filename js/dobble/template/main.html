@@ -1,0 +1,24 @@
+<h1>Générateur de Dobble</h1>
+
+<!-- ko with: config -->
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="nbCards" class="col-sm-2 control-label">Nombre de Cartes</label>
+            <div class="col-sm-4">
+                <select id="nbCards" class="col-sm-10 form-control" data-bind="options: availableNbCards, value: nbCards"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="wordsList" class="col-sm-2 control-label">Liste des mots</label>
+            <div class="col-sm-4">
+                <select id="wordsList" class="col-sm-10 form-control" data-bind="options: availableLists, value: list"></select>
+            </div>
+        </div>
+    </form>
+<!-- /ko -->
+
+<div data-bind="foreach: cards">
+    <div class="card" data-bind="foreach: items">
+        <p data-bind="text: $data"></p>
+    </div>
+</div>
