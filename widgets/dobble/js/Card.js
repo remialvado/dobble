@@ -6,12 +6,5 @@ define(["jquery", "knockout"], function($, ko) {
          * Observables *
          ***************/
         self.items = ko.observableArray(items || []);
-
-        /***********
-         * Service *
-         ***********/
-        self.pushItem = function(item) {
-            self.items.push(item);
-        }
     }
 });

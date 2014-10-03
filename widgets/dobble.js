@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'js',
+    baseUrl: 'widgets',
     vendor: '../vendor',
     waitSeconds: 200,
     config: {

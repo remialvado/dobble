@@ -7,22 +7,25 @@ define(["jquery", "knockout", "dobble/js/Config", "dobble/js/Card", "text!dobble
              * Observables *
              ***************/
             self.config = ko.observable(new Config());
-            self.cards  = ko.observableArray([]);
 
             /************
              * Computed *
              ************/
-            self.generateCards = ko.computed(function() {
-                var items = self.config().words();
-                self.cards([]);
-                $.each(self.config().matrice(), function(i, cardItems) {
-                    var items = [];
-                    $.each(cardItems, function(j, itemIndex) {
-                        items.push(self.config().words()[itemIndex]);
+            self.cards = ko.computed(function() {
+                var cards = [];
+                if (self.config().items().length < self.config().nbCards()) {
+                    return cards;
+                }
+
+                $.each(self.config().matrice(), function(i, indexes) {
+                    var cardItems = [];
+                    $.each(indexes, function(j, index) {
+                        cardItems.push(self.config().items()[index]);
                     });
-                    self.cards.push(new Card(items));
+                    cards.push(new Card(cardItems));
                 });
-            });
+                return cards;
+            }).extend({ rateLimit: { timeout: 250, method: "notifyWhenChangesStop" } });
 
             /************
              * Services *

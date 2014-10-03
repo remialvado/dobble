@@ -1,0 +1,5 @@
+define(["jquery", "dobble/js/Items", "dobble/js/Word"], function($, Items, Word) {
+    var legumes = ["Ail", "Artichaut", "Asperge blanche", "Asperge verte", "Aubergine", "Bette", "Betterave rouge", "Brocoli", "Carotte", "Catalonia", "Céleri", "Céleri branche", "Céleri rave", "Chou blanc", "Chou de Bruxelles", "Chou frisé", "Chou Romanesco", "Chou rouge", "Chou-chinois", "Chou-fleur", "Chou-rave", "Cima di Rapa", "Citrouille", "Concombre", "Courge", "Courgette", "Endive", "Epinard", "Fenouil", "Haricot", "Laitue romaine", "Mâche", "Maïs", "Navet", "Oignon", "Panais", "Pâtisson", "Petit oignon blanc", "petit pois", "Poireau", "Pois mange-tout", "Poivron", "Pomme de terre", "Potimarron", "Potiron", "Radis", "Radis long", "Rhubarbe", "Salsifis", "Topinambour"];
+
+    return new Items("Légumes", $.map(legumes, function(item) {return new Word(item)}));
+});

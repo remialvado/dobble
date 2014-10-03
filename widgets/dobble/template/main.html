@@ -1,0 +1,100 @@
+<h1>Générateur de Dobble</h1>
+
+<!-- ko with: config -->
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="nbCards" class="col-sm-2 control-label">Nombre de Cartes</label>
+            <div class="col-sm-4">
+                <select id="nbCards" class="col-sm-10 form-control" data-bind="options: availableNbCards, value: nbCards"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="wordsList" class="col-sm-2 control-label">Liste des mots</label>
+            <div class="col-sm-4">
+                <select id="wordsList" class="col-sm-10 form-control" data-bind="options: lists, optionsText: 'name', value: list, optionsCaption: 'Sélectionner une liste'"></select>
+            </div>
+            <label for="createList" class="col-sm-1 control-label">ou</label>
+            <form class="col-sm-3 input-group" data-bind="submit: createNewList">
+                <input id="createList" class="form-control" placeholder="Entrer le nom d'une nouvelle liste" data-bind="value: newListName"/>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">
+                        <i class="fa fa-plus" />
+                    </button>
+                </span>
+            </form>
+        </div>
+    </div>
+    <!-- ko if: list -->
+        <!-- ko with: list -->
+            <a href="#" data-bind="click: toggleEdit">
+                <i class="fa fa-angle-double-right"></i>
+                <!-- ko ifnot: edit -->
+                    Configurer la liste de mots
+                <!-- /ko -->
+                <!-- ko if: edit -->
+                    Masquer la liste de mots
+                <!-- /ko -->
+            </a>
+            <!-- ko if: edit -->
+                <div class="form-horizontal">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" data-bind="checked: shuffle"> Mélanger les cartes
+                        </label>
+                    </div>
+                </div>
+                <div class="words-list row">
+                    <!-- ko foreach: items -->
+                        <div class="col-sm-3">
+                            <!--div class="input-group"-->
+                            <div>
+                                <input class="form-control" data-bind="value: value" />
+                                <!--span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-cog" />
+                                    </button>
+                                </span-->
+                            </div>
+                        </div>
+                    <!-- /ko -->
+                    <form class="col-sm-3" data-bind="submit: addNewItem">
+                        <div class="input-group">
+                            <input class="form-control" placeholder="Ajouter un mot" data-bind="value: newItemName" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-plus" />
+                                </button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            <!-- /ko -->
+        <!-- /ko -->
+
+        <br />
+        <!-- ko if: hasEnoughWords -->
+            <a href="#" data-bind="click: toggleViewCards">
+                <i class="fa fa-angle-double-right"></i>
+                <!-- ko if: viewCards -->
+                    Masquer les cartes
+                <!-- /ko -->
+                <!-- ko ifnot: viewCards -->
+                    Afficher les cartes
+                <!-- /ko -->
+            </a>
+        <!-- /ko -->
+        <!-- ko ifnot: hasEnoughWords -->
+            <div class="alert alert-warning">
+                Il vous manque <span data-bind="text: nbMissingCards"></span> mots pour ce jeu.
+            </div>
+        <!-- /ko -->
+    <!-- /ko -->
+<!-- /ko -->
+
+<!-- ko if: config().viewCards -->
+    <div data-bind="foreach: cards">
+        <div class="card" data-bind="foreach: items">
+            <p data-bind="text: value"></p>
+        </div>
+    </div>
+<!-- /ko -->

@@ -4,3 +4,7 @@
     float: left;
     border: 1px solid red;
 }
+
+.words-list > div {
+    margin-bottom: 8px;
+}
