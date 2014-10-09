@@ -22,6 +22,10 @@ define([
         self.newListName      = ko.observable("");
         self.viewCards        = ko.observable(false);
 
+        self.zoom             = ko.observable(1);
+        self.cols             = ko.observable(2);
+        self.rows             = ko.observable(3);
+
         /*******************
          * Non-Observables *
          *******************/
@@ -41,6 +45,15 @@ define([
             $.each(self.lists(), function(i, l) {l.edit(false)});
             self.lists.push(list);
             self.list(list);
+            self.newListName("");
+        };
+
+        self.increment = function() {
+            console.log(arguments);
+        };
+
+        self.decrement = function() {
+            console.log(arguments);
         };
 
         /*****************

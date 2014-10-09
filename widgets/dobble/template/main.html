@@ -9,6 +9,48 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="nbRows" class="col-sm-2 control-label">Nombre de Lignes</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input id="nbRows" class="form-control bfh-number" data-bind="value: rows">
+                    <a href="#" class="input-group-addon bfh-number-btn inc" data-bind="click: increment.bind($data, 'rows')">
+                        <span class="glyphicon glyphicon-chevron-up"></span>
+                    </a>
+                    <a href="#" class="input-group-addon bfh-number-btn dec" data-bind="click: decrement.bind($data, 'rows')">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="nbCols" class="col-sm-2 control-label">Nombre de Colonnes</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input id="nbCols" class="form-control bfh-number" data-bind="value: cols">
+                    <a href="#" class="input-group-addon bfh-number-btn inc" data-bind="click: increment.bind($data, 'cols')">
+                        <span class="glyphicon glyphicon-chevron-up"></span>
+                    </a>
+                    <a href="#" class="input-group-addon bfh-number-btn dec" data-bind="click: decrement.bind($data, 'cols')">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zoom" class="col-sm-2 control-label">Zoom</label>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <input id="zoom" class="form-control bfh-number" data-bind="value: zoom">
+                    <a href="#" class="input-group-addon bfh-number-btn inc" data-bind="click: increment.bind($data, 'zoom')">
+                        <span class="glyphicon glyphicon-chevron-up"></span>
+                    </a>
+                    <a href="#" class="input-group-addon bfh-number-btn dec" data-bind="click: decrement.bind($data, 'zoom')">
+                        <span class="glyphicon glyphicon-chevron-down"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="wordsList" class="col-sm-2 control-label">Liste des mots</label>
             <div class="col-sm-4">
                 <select id="wordsList" class="col-sm-10 form-control" data-bind="options: lists, optionsText: 'name', value: list, optionsCaption: 'Sélectionner une liste'"></select>
@@ -91,10 +133,4 @@
     <!-- /ko -->
 <!-- /ko -->
 
-<!-- ko if: config().viewCards -->
-    <div data-bind="foreach: cards">
-        <div class="card" data-bind="foreach: items">
-            <p data-bind="text: value"></p>
-        </div>
-    </div>
-<!-- /ko -->
+<div id="svg-container"></div>

@@ -20,14 +20,15 @@ requirejs.config({
     },
     shim: {
         'knockoutTemplatingPlugin': ['knockout'],
-        'bootstrap': ["jquery"]
+        'bootstrap': ["jquery"],
+        'dobble/widget': ["snap"]
     },
     paths: {
         'jquery': 'vendor/jquery-2.1.1.min',
         'knockout': 'vendor/knockout-3.1.0',
         'knockoutTemplatingPlugin': 'vendor/StringInterpolatingBindingProvider',
         'bootstrap':                'vendor/bootstrap-3.1.0.min',
-        'dobble':                   'dobble',
+        'snap':                     'vendor/snap.svg',
         'text':                     'vendor/text',
         'css':                      'vendor/css'
     }

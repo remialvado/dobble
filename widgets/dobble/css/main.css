@@ -8,3 +8,8 @@
 .words-list > div {
     margin-bottom: 8px;
 }
+
+svg {
+    width: 500px;
+    height: 300px;
+}
