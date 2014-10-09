@@ -88,10 +88,8 @@ define(["jquery", "knockout", "dobble/js/Config", "dobble/js/Card", "text!dobble
              * Service Computed *
              ********************/
             self.drawSvg = ko.computed(function() {
-                if (!self.config().viewCards()) {
-                    $("svg").remove();
-                    return;
-                };
+                $("svg").remove();
+                if (self.config().hasError()) return;
                 $.each(self.pages(), function(index, cards) {
                     $("#svg-container").append('<svg id="svg-' + index + '"></svg>');
                     var s = Snap("#svg-" + index);

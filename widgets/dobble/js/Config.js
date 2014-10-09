@@ -20,7 +20,6 @@ define([
         self.lists            = ko.observableArray([legumes, fruits, marvel]);
         self.list             = ko.observable();
         self.newListName      = ko.observable("");
-        self.viewCards        = ko.observable(false);
 
         self.zoom             = ko.observable(1);
         self.cols             = ko.observable(2);
@@ -34,9 +33,6 @@ define([
         /************
          * Services *
          ************/
-        self.toggleViewCards = function() {
-            self.viewCards(!self.viewCards());
-        };
 
         self.createNewList = function() {
             var list = new Items(self.newListName(), []);
@@ -48,12 +44,12 @@ define([
             self.newListName("");
         };
 
-        self.increment = function() {
-            console.log(arguments);
+        self.increment = function(model) {
+            self[model](self[model]() + 1);
         };
 
-        self.decrement = function() {
-            console.log(arguments);
+        self.decrement = function(model) {
+            self[model](Math.max(1, self[model]() - 1));
         };
 
         /*****************
@@ -63,6 +59,10 @@ define([
             return self.matrices["nb-cards-" + self.nbCards()];
         });
 
+        self.nbItemsPerCard = ko.computed(function() {
+            return self.matrice()[0].length;
+        });
+
         self.hasEnoughWords = ko.computed(function() {
             return self.list() && self.list().preparedItems().length >= self.nbCards();
         });
@@ -70,6 +70,16 @@ define([
         self.nbMissingCards = ko.computed(function() {
             if (!self.list() || self.hasEnoughWords()) return 0;
             return self.nbCards() - self.list().preparedItems().length;
+        });
+
+        self.error = ko.computed(function() {
+            if (!self.hasEnoughWords()) return "Il vous manque " + self.nbMissingCards() + " mots pour ce jeu.";
+            if (self.rows() * self.cols() < self.nbItemsPerCard()) return "Il faut rajouter des lignes ou des colonnes.";
+            return undefined;
+        });
+
+        self.hasError = ko.computed(function() {
+            return self.error() !== undefined;
         });
 
         /********************

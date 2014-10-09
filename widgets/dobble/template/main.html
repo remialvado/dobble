@@ -113,22 +113,8 @@
             <!-- /ko -->
         <!-- /ko -->
 
-        <br />
-        <!-- ko if: hasEnoughWords -->
-            <a href="#" data-bind="click: toggleViewCards">
-                <i class="fa fa-angle-double-right"></i>
-                <!-- ko if: viewCards -->
-                    Masquer les cartes
-                <!-- /ko -->
-                <!-- ko ifnot: viewCards -->
-                    Afficher les cartes
-                <!-- /ko -->
-            </a>
-        <!-- /ko -->
-        <!-- ko ifnot: hasEnoughWords -->
-            <div class="alert alert-warning">
-                Il vous manque <span data-bind="text: nbMissingCards"></span> mots pour ce jeu.
-            </div>
+        <!-- ko if: hasError -->
+            <div class="alert alert-warning" data-bind="text: error"></div>
         <!-- /ko -->
     <!-- /ko -->
 <!-- /ko -->
